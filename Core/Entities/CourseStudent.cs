@@ -9,5 +9,7 @@ namespace Core.Entities
 
         public Guid StudentId { get; set; }
         public virtual Student Student { get; set; }
+
+        public double Score { get; set; }
     }
 }
