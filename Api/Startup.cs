@@ -32,7 +32,9 @@ namespace Api
 
             services.AddEntityFrameworkSqlServer();
             services.AddDbContext<ApplicationDbContext>((options) =>
-                options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
+                options
+               // .UseLazyLoadingProxies()
+                .UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
 
             services.AddScoped(typeof(IAsyncRepository<>), typeof(AsyncRepository<>));
             services.AddScoped<IUnitOfWork, UnitOfWork>();

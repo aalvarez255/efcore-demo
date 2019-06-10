@@ -2,7 +2,7 @@
 
 namespace Api.Entities
 {
-    public class Course : BaseEntity
+    public abstract class Course : BaseEntity
     {
         public Course()
         {

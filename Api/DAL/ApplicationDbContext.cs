@@ -9,6 +9,7 @@ namespace Api.DAL
     {
         public ApplicationDbContext(DbContextOptions options) : base (options)
         {
+            ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
         }
 
         public DbSet<Course> Courses { get; set; }
@@ -21,11 +22,6 @@ namespace Api.DAL
         {
             modelBuilder.Entity<CourseStudent>()
                 .HasKey(x => new { x.CourseId, x.StudentId });
-        }
-
-        private void ConfigureCourseStudent(EntityTypeBuilder<CourseStudent> builder)
-        {
-            builder.HasKey(x => new { x.CourseId, x.StudentId });
         }
     }
 }

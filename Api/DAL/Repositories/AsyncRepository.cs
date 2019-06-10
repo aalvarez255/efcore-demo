@@ -20,10 +20,9 @@ namespace Api.DAL.Repositories
             return await _db.Set<T>().SingleOrDefaultAsync(x => x.Id == id);
         }
 
-        public async Task<IEnumerable<T>> GetAllAsync()
+        public async Task<List<T>> GetAllAsync()
         {
-            var result = _db.Set<T>().AsEnumerable();
-            return await Task.FromResult(result);
+            return await _db.Set<T>().ToListAsync();
         }
 
         public async Task<T> AddAsync(T entity)
@@ -32,7 +31,7 @@ namespace Api.DAL.Repositories
             return entity;
         }
 
-        public async Task<IEnumerable<T>> AddAsync(IEnumerable<T> entities)
+        public async Task<List<T>> AddAsync(List<T> entities)
         {
             await _db.Set<T>().AddRangeAsync(entities);
             return entities;
@@ -45,7 +44,7 @@ namespace Api.DAL.Repositories
             return await Task.FromResult(entity);
         }
 
-        public async Task<IEnumerable<T>> UpdateAsync(IEnumerable<T> entities)
+        public async Task<List<T>> UpdateAsync(List<T> entities)
         {
             foreach (var entity in entities)
                 await UpdateAsync(entity);            
@@ -60,7 +59,7 @@ namespace Api.DAL.Repositories
             await Task.CompletedTask;
         }
 
-        public async Task DeleteAsync(IEnumerable<T> entities)
+        public async Task DeleteAsync(List<T> entities)
         {
             foreach (var entity in entities)
                 await DeleteAsync(entity);

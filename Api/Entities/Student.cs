@@ -12,6 +12,7 @@ namespace Api.Entities
         public string Name { get; set; }
         public string Email { get; set; }
 
+        public virtual StudentAddress Address { get; set; }
         public virtual ICollection<CourseStudent> Courses { get; set; }
     }
 }
